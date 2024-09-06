@@ -5,6 +5,17 @@ currentUser=$(stat -f "%Su" /dev/console)
 # Is Jamf Connect still the active login window?
 loginwindow_check=$(security authorizationdb read system.login.console | grep 'loginwindow:login' 2>&1 > /dev/null; echo $?)
 
+# Is Jamf Connect Installed?
+if [ -e "/Library/LaunchAgents/com.jamf.connect.plist" ]
+then
+	# Yes. Move along.
+	echo "Has Jamf Connect"
+else
+	# No. Install it.
+	echo "Missing Jamf Connect"
+	/usr/local/bin/jamf policy -event InstallJamfConnect
+fi
+
 if [ $loginwindow_check == 0 ]; then
 	# Mac has reverted to macOS login screen, needs fixing.
 	echo "macOS Login Screen, resetting authdb"
