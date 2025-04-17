@@ -2,10 +2,10 @@
 
 daemonPath="/Library/LaunchDaemons/com.AnyOrg.dscleanup.plist"
 
-if [[ -f "$daemonPath" ]]; then
-	sudo launchctl bootout system "$daemonPath"
-	rm -f "$daemonPath"
-fi
+#if [[ -f "$daemonPath" ]]; then
+#	sudo launchctl bootout system "$daemonPath"
+#	rm -f "$daemonPath"
+#fi
 
 cat > "$daemonPath" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
