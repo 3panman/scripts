@@ -1,6 +1,7 @@
 #!/bin/bash
 
-daemonPath="/Library/LaunchDaemons/com.AnyOrg.dscleanup.plist"
+# Replace "AnyOrg" with your org identifier
+daemonPath="/Library/LaunchDaemons/com.AnyOrg.dscleanup"
 
 # Filter installed LLMs for deepseek and report version(s)
 DeepSeekVersion=$(/usr/local/bin/ollama list | grep deepseek | awk '{print $1}')
@@ -9,9 +10,9 @@ DeepSeekVersion=$(/usr/local/bin/ollama list | grep deepseek | awk '{print $1}')
 ollama rm $DeepSeekVersion
 
 # Boot-out and delete DeepSeek removal LaunchDaemon if it exists
-if [[ -f "$daemonPath" ]]; then
-	sudo launchctl bootout system "$daemonPath"
-	rm -f "$daemonPath"
+if [[ -f "$daemonPath".plist ]]; then
+	sudo launchctl bootout system "$daemonPath".plist
+	rm -f "$daemonPath".plist
 fi
 
 echo "DeepSeek removed. Updating Jamf inventory."
