@@ -36,7 +36,7 @@ elif [[ $buttonReturned == "No" ]]; then
 
 If no action is taken, DeepSeek will be automatically removed from this Mac in three days." buttons {"OK"} with icon stop'
 	# Create a launchDaemon which will auto-trigger the DeepSeek removal policy in three days if the user hasn't done it yet.
-#	/usr/local/bin/jamf policy -event KillDeepSeekDaemon
+	/usr/local/bin/jamf policy -event KillDeepSeekDaemon
 else
 	# Script ran at login screen or something broke...
 	echo "Something has gone terribly wrong."
