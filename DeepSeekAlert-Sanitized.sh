@@ -1,5 +1,16 @@
 #!/bin/bash
 
+#########################
+##### Customization #####
+#########################
+
+# Edit this with the appropriate CISO contact info for your org
+CISO="YourCISO@your.org"
+
+########################################################
+##### Test fully if you change anything below this #####
+########################################################
+
 # Alert user and log response
 buttonReturned=$(osascript -e 'button returned of (display dialog "Deepseek has been detected on this Mac.
 
@@ -19,13 +30,13 @@ Thank you for your cooperation." buttons{"OK"} with icon caution'
 	# Create a launchDaemon to trigger the DeepSeek removal policy in three days in case the user hasn't done it yet.
 	/usr/local/bin/jamf policy -event KillDeepSeekDaemon
 elif [[ $buttonReturned == "No" ]]; then
-	# User chose "No". Advise them to contact Tim Scwhab for exemption and that we'll auto-kill deepseek if they dawdle.
+	# User chose "No". Advise them to contact their CISO for exemption and that we'll auto-kill deepseek if they dawdle.
 	echo "No"
-	osascript -e 'display dialog "If you require DeepSeek for your work, please contact our CISO (CISO@AnyOrg.com) as soon as possible to discuss an exemption.
+	osascript -e 'display dialog "If you require DeepSeek for your work, please contact our CISO ('"$CISO"') as soon as possible to discuss an exemption.
 
 If no action is taken, DeepSeek will be automatically removed from this Mac in three days." buttons {"OK"} with icon stop'
 	# Create a launchDaemon which will auto-trigger the DeepSeek removal policy in three days if the user hasn't done it yet.
-	/usr/local/bin/jamf policy -event KillDeepSeekDaemon
+#	/usr/local/bin/jamf policy -event KillDeepSeekDaemon
 else
 	# Script ran at login screen or something broke...
 	echo "Something has gone terribly wrong."
