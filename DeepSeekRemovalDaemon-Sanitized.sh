@@ -3,11 +3,11 @@
 # Replace "AnyOrg" with your org identifier
 daemonPath="/Library/LaunchDaemons/com.AnyOrg.dscleanup"
 
-if [[ -f "$daemonPath" ]]; then
+if [[ -f "$daemonPath".plist ]]; then
 	echo "Daemon already present"
 	exit
 else
-	cat > "$daemonPath" << EOF
+	cat > "$daemonPath".plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
