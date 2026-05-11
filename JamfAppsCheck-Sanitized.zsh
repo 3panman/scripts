@@ -1,9 +1,9 @@
 #!/bin/zsh --no-rcs
 
 # Written by Thom Martin for The University of Arizona May 07, 2026.
-# Optionally, edit line 43 if you would like the report to go somewhere other than your Desktop folder.
 # You will need an API Role configured on your Jamf server with "Read Smart Computer Groups" and "Read Mac Applications" privileges, as well as an API Client with that Role assigned to it.
 # Edit lines 23, 24, and 25 with your org's client id, client secret, and Jamf Pro URL.
+# Optionally, edit line 43 if you would like the report to go somewhere other than your Desktop folder.
 # You will also need jq installed on the Mac running this script for working with JSON. https://jqlang.org/
 # The /api/v1/app-installers/ endpoints are currently undocumented. There is currently no endpoint to toggle an App Installer off and back on to force a deployment recacluation, but this script will generate a report of titles which may need that done by hand.
 # Credit where credit is due, super thanks to Jordy Thery and Neil Martin over on the Mac Admins Slack. I also got a lot of help sorting the App Installers endpoints from https://github.com/tyler-tee/JNUC-2023
