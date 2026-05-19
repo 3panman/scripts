@@ -9,7 +9,7 @@
 # Credit where credit is due, super thanks to Jordy Thery and Neil Martin over on the Mac Admins Slack. I also got a lot of help sorting the App Installers endpoints from https://github.com/tyler-tee/JNUC-2023
 
 # Check whether jq is installed.
-if [[ -f /usr/bin/jq ]]; then
+if [[ ! -f /usr/bin/jq ]]; then
 	# If jq is not found, notify that is needed and exit the script.
 	echo "This script requires jq on this Mac. https://jqlang.org/ \nExiting."
 	exit
