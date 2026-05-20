@@ -81,10 +81,13 @@ else
 			echo "${appName} is not recalculating its deployment scope. \n Toggle the app Installer off and back on to force it to recalculate. \n This may indicate a scoping conflict if it continues to occur. \n App URL: ${url}/view/computers/mac-apps/app-installers/deployments/${appID} \n App ID: ${appID} \n Deployment Count: ${deploySum} \n Smart Group: ${smartGroupName} \n Smart Group ID: ${smartGroupID} \n Smart Group Count: ${smartGroupCount} \n" >> "$reportPath"JamfAppConflicts.txt
 		fi
 	done
+	# Check if report file exists.
 	if [[ -f "$reportPath"JamfAppConflicts.txt ]]; then
+		# If it exists, say so and open it.
 		echo "Some App Installers may not be recalculating correctly. Opening report."
 		open "$reportPath"JamfAppConflicts.txt
 	else
+		# If it does not exist, say so and exit.
 		echo "All App Installers appear to be recalculating correctly. Exiting."
 		exit 
 	fi
