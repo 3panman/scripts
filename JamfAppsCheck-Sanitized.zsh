@@ -65,7 +65,7 @@ else
 		# Get the Name of the Smart Group the App Installer is scoped to and remove surrounding quotes
 		smartGroupName=$(jq -c '.smartGroup.name' <<< "${app}" | tr -d \")
 		# Get the number of Macs in the Smart Group
-		smartGroupCount=$(curl -X GET "$url/api/v2/computer-groups/smart-group-membership/$smartGroupID" -H "accept: application/json" -H "Authorization: Bearer $access_token" | jq '.members | length')
+		smartGroupCount=$(curl -X GET "$url/api/v3/computer-groups/smart-group-membership/$smartGroupID" -H "accept: application/json" -H "Authorization: Bearer $access_token" | jq '.members | length')
 		# Calculate the number of Macs that Jamf thinks the App Installer should be scoped to
 		deploySum=$(jq '.computerStatuses.installed + .computerStatuses.available + .computerStatuses.inProgress + .computerStatuses.failed + .computerStatuses.unqualified' <<< "${app}")	
 #		# Test population of variables for each array item
